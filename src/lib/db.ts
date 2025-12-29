@@ -16,6 +16,7 @@ if (!cached) {
 const connectDB = async () => {
     // Return the existing connection if it exists
     if (cached.conn) {
+        console.log("Cached DB connected!");
         return cached.conn;
     }   
 
@@ -27,6 +28,7 @@ const connectDB = async () => {
     // Assign the resolved promise value to conn if promise is pending and conn is null.
     try {
         cached.conn = await cached.promise;
+        console.log("DB connected!");
     } catch (error) {
         throw error;
     }
@@ -34,3 +36,5 @@ const connectDB = async () => {
 return cached.conn;
 
 }
+
+export default connectDB;
